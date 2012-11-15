@@ -1,2 +1,3 @@
-export(Log)
-export(as.data.frame.Log)
+export(PandaLog)
+export(accelerometry)
+export(as.data.frame.PandaLog)

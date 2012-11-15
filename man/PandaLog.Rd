@@ -1,8 +1,8 @@
-\name{read.sdlog}
-\alias{read.sdlog}
-\title{read.sdlog}
+\name{PandaLog}
+\alias{PandaLog}
+\title{PandaLog}
 \usage{
-  read.sdlog(file, ...)
+  PandaLog(file, ...)
 }
 \arguments{
   \item{file}{path to file}
