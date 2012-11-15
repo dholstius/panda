@@ -1,0 +1,63 @@
+Kunming-PANDA-103
+=================
+
+```{r knitr_opts, echo=FALSE, cache=FALSE}
+require(knitr)
+opts_chunk$set(tidy=FALSE, fig.path='figs/fig-', fig.width=10, fig.height=7, cache=FALSE, warning=FALSE, message=FALSE, echo=FALSE)
+options(digits=3)
+```
+
+```{r load_data}
+require(devtools)
+setwd(file.path('~', 'Dropbox', 'R'))
+load_all('panda', TRUE)
+device_id <- '103'
+file <- 'SEQLOG00.TXT'
+path <- system.file('data', device_id, file, package='panda')
+log <- PandaLog(path)
+```
+
+After converting timestamps to local time, data looks like this.
+
+```{r convert_tz}
+require(lubridate)
+local_tz <- 'Asia/Chongqing'
+obs <- as.data.frame(log)
+obs <- transform(obs, clock=with_tz(clock, local_tz))
+head(obs)
+```
+
+Time series plot.
+
+```{r time_series}
+require(ggplot2)
+theme_set(theme_bw())
+update_geom_defaults('point', aes(size=1, alpha=0.8))
+
+require(scales)
+scale_clock <- function(...) {
+	labels <- date_format('%I:%M%p\n%b %d')
+	breaks <- date_breaks('1 hours')
+	minor_breaks <- '1 hour'
+	scale_x_datetime(name='', ..., breaks=breaks, minor_breaks=minor_breaks, labels=labels)
+}
+
+require(reshape2)
+wide <- transform(obs, light=light/10.23)
+long <- melt(wide, id.vars=c('clock'))
+unit_lookup <- list(
+	humid = "% RH",
+	light = "%",
+	shinyei = "%",
+	temp = "Celsius"
+)
+long$units <- factor(unlist(unit_lookup[long$variable]))
+fig <- ggplot(long, aes(clock, value))
+fig <- fig + scale_clock()
+fig <- fig + scale_y_continuous('')
+fig <- fig + geom_point(aes(color=variable))
+fig <- fig + facet_grid(units + variable ~ ., scales='free_y')
+fig <- fig + theme(legend.position='none')
+#fig <- fig + ggtitle(sprintf('PANDA %s - %s - %s', device_id, file, local_tz))
+show(fig)
+```

@@ -1,0 +1,2 @@
+export(Log)
+export(as.data.frame.Log)

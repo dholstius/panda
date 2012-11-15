@@ -1,0 +1,17 @@
+Package: panda
+Maintainer: David Holstius <david.holstius@berkeley.edu>
+Author: holstius
+Version: 0.1
+License: BSD
+Title: PANDA library
+Description: Helper functions for analyzing PANDA data
+Depends:
+    holstius,
+    reshape2
+Suggests:
+    testthat,
+    roxygen2,
+    ggplot2
+Collate:
+    'panda-package.r'
+    'read.r'
