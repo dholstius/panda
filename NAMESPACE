@@ -1,3 +1,4 @@
 export(PandaLog)
 export(accelerometry)
 export(as.data.frame.PandaLog)
+export(ggplot.PandaLog)

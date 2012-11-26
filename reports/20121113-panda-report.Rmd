@@ -12,7 +12,7 @@ require(devtools)
 setwd(file.path('~', 'Dropbox', 'R'))
 load_all('panda', TRUE)
 device_id <- '103'
-file <- 'SEQLOG00.TXT'
+file <- '20121113-103.log'
 path <- system.file('data', device_id, file, package='panda')
 log <- PandaLog(path)
 ```

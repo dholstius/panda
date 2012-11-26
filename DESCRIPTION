@@ -15,3 +15,7 @@ Suggests:
 Collate:
     'panda-package.r'
     'read.r'
+    'ggplot.r'
+    'scales.r'
+    'accelerometry.r'
+    'as.data.frame.r'
