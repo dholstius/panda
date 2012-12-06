@@ -2,7 +2,8 @@
 \alias{ggplot.PandaLog}
 \title{ggplot.PandaLog}
 \usage{
-  ggplot.PandaLog(data, duration = ddays(7), ...)
+  ggplot.PandaLog(data, tz = "GMT", duration = ddays(7),
+    ...)
 }
 \arguments{
   \item{data}{PandaLog object (obtained from

@@ -29,7 +29,7 @@ ggplot.PandaLog <- function(data, tz='GMT', duration=ddays(7), ...) {
 
 	require(ggplot2)
 	fig <- ggplot(selected, aes(clock, value))
-	fig <- fig + scale_clock()
+	fig <- fig + scale_x_days()
 	fig <- fig + scale_y_continuous('')
 	fig <- fig + geom_point(aes(color=variable))
 	fig <- fig + facet_grid(units + variable ~ ., scales='free_y')

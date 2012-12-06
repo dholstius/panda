@@ -2,7 +2,7 @@
 \alias{as.data.frame.PandaLog}
 \title{as.data.frame.PandaLog}
 \usage{
-  as.data.frame.PandaLog(x, ...)
+  as.data.frame.PandaLog(x, tz, ...)
 }
 \arguments{
   \item{x}{PandaLog object}
